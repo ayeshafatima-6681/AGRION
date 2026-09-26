@@ -94,6 +94,7 @@ function CropProblem({ onBack, onAsk }) {
     const text = description.toLowerCase();
 
     let possibleIssue = "General crop stress";
+
     let explanation =
       "The symptoms may have several possible causes. More information is needed before identifying the exact problem.";
 
@@ -109,8 +110,10 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("pale")
     ) {
       possibleIssue = "Possible nutrient or water-related stress";
+
       explanation =
         "Yellowing leaves can have different causes, including nutrient imbalance, water stress, root problems, or natural leaf ageing.";
+
       nextSteps = [
         "Check the soil moisture around the affected plants.",
         "Look at whether older or newer leaves are affected.",
@@ -123,8 +126,10 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("black")
     ) {
       possibleIssue = "Possible leaf disease or environmental damage";
+
       explanation =
         "Leaf spots can be associated with disease, insect damage, nutrient problems, or environmental stress.";
+
       nextSteps = [
         "Inspect whether the spots are increasing or spreading.",
         "Check both the upper and lower surfaces of the leaves.",
@@ -137,8 +142,10 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("worm")
     ) {
       possibleIssue = "Possible pest activity";
+
       explanation =
         "The description may indicate insect or pest activity, but the exact pest should be identified before treatment.";
+
       nextSteps = [
         "Check the underside of leaves and young shoots.",
         "Look for eggs, webbing, holes, or sticky residue.",
@@ -149,9 +156,12 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("curling") ||
       text.includes("twist")
     ) {
-      possibleIssue = "Possible pest, water, or environmental stress";
+      possibleIssue =
+        "Possible pest, water, or environmental stress";
+
       explanation =
         "Leaf curling can occur for several reasons, including pests, water stress, heat, or other crop stresses.";
+
       nextSteps = [
         "Check soil moisture.",
         "Inspect the underside of curled leaves for pests.",
@@ -163,8 +173,10 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("droop")
     ) {
       possibleIssue = "Possible water or root-related stress";
+
       explanation =
         "Wilting can result from insufficient water, excessive water, root damage, heat stress, or disease.";
+
       nextSteps = [
         "Check the soil moisture before adding more water.",
         "Inspect the plant base and nearby soil.",
@@ -176,8 +188,10 @@ function CropProblem({ onBack, onAsk }) {
       text.includes("small")
     ) {
       possibleIssue = "Possible growth or nutrient stress";
+
       explanation =
         "Poor growth can have multiple causes, including nutrition, water, soil conditions, pests, disease, or unsuitable growing conditions.";
+
       nextSteps = [
         "Check soil moisture and drainage.",
         "Inspect the plant for pests or disease symptoms.",
@@ -214,9 +228,64 @@ function CropProblem({ onBack, onAsk }) {
     });
   };
 
-  const handleAskAGRION = () => {
+  /*
+   * Sends the user's current crop-problem context
+   * to Ask AGRION through localStorage.
+   */
+  const askAgrionWithContext = (question) => {
+    const cropText = selectedCrop
+      ? `My crop is ${selectedCrop}.`
+      : "I have not selected my crop yet.";
+
+    const stageText = selectedStage
+      ? `The crop is currently in the ${selectedStage} stage.`
+      : "I have not selected the crop stage yet.";
+
+    const problemText = description.trim()
+      ? `What I am noticing is: ${description.trim()}`
+      : "I have not described the symptoms yet.";
+
+    const finalQuestion = `${question}
+
+${cropText}
+${stageText}
+${problemText}`;
+
+    localStorage.setItem("agrionAskPrefill", finalQuestion);
+
     if (onAsk) {
       onAsk();
+    }
+  };
+
+  const handleAskAGRION = () => {
+    askAgrionWithContext(
+      "Help me understand what may be wrong with my crop and what I should check next."
+    );
+  };
+
+  const handleHelpTopic = (topic) => {
+    const questions = {
+      pests:
+        "Help me check whether my crop may have a pest or insect problem. What signs should I look for?",
+
+      diseases:
+        "Help me understand whether the symptoms on my crop could be related to a disease. What should I check first?",
+
+      water:
+        "Help me check whether my crop may be experiencing water stress. What should I inspect before changing irrigation?",
+
+      nutrients:
+        "Help me understand whether my crop symptoms could be related to a nutrient problem. What should I check before adding fertilizer?",
+    };
+
+    askAgrionWithContext(questions[topic]);
+  };
+
+  const handleHelpTopicKeyDown = (event, topic) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleHelpTopic(topic);
     }
   };
 
@@ -323,6 +392,7 @@ function CropProblem({ onBack, onAsk }) {
 
               <div>
                 <h2>Upload a crop photo</h2>
+
                 <p>
                   A clear photo can help identify visible crop
                   problems.
@@ -391,6 +461,7 @@ function CropProblem({ onBack, onAsk }) {
 
               <div>
                 <h2>Describe the problem</h2>
+
                 <p>
                   Tell AGRION what you are noticing in the field.
                 </p>
@@ -459,6 +530,7 @@ function CropProblem({ onBack, onAsk }) {
 
               <div>
                 <h2>What stage is your crop in?</h2>
+
                 <p>
                   This helps AGRION understand the situation better.
                 </p>
@@ -733,19 +805,43 @@ function CropProblem({ onBack, onAsk }) {
           </div>
 
           <div className="help-grid">
-            <div className="help-item">
+            <div
+              className="help-item"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleHelpTopic("pests")}
+              onKeyDown={(event) =>
+                handleHelpTopicKeyDown(event, "pests")
+              }
+            >
               <span>🐛</span>
               <strong>Pests</strong>
               <p>Possible insect or pest damage.</p>
             </div>
 
-            <div className="help-item">
+            <div
+              className="help-item"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleHelpTopic("diseases")}
+              onKeyDown={(event) =>
+                handleHelpTopicKeyDown(event, "diseases")
+              }
+            >
               <span>🦠</span>
               <strong>Diseases</strong>
               <p>Visible signs that may indicate disease.</p>
             </div>
 
-            <div className="help-item">
+            <div
+              className="help-item"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleHelpTopic("water")}
+              onKeyDown={(event) =>
+                handleHelpTopicKeyDown(event, "water")
+              }
+            >
               <span>💧</span>
               <strong>Water stress</strong>
               <p>
@@ -753,7 +849,15 @@ function CropProblem({ onBack, onAsk }) {
               </p>
             </div>
 
-            <div className="help-item">
+            <div
+              className="help-item"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleHelpTopic("nutrients")}
+              onKeyDown={(event) =>
+                handleHelpTopicKeyDown(event, "nutrients")
+              }
+            >
               <span>🧪</span>
               <strong>Nutrient issues</strong>
               <p>Possible nutrient-related symptoms.</p>

@@ -1061,3 +1061,21 @@
     padding: 16px;
   }
 }
+.market-information-item,
+.selling-journey-step,
+.market-floating-card,
+.market-selected-option-help {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
+.market-information-item:focus-visible,
+.selling-journey-step:focus-visible,
+.market-floating-card:focus-visible,
+.market-selected-option-help:focus-visible {
+  outline: 2px solid #3f8f49;
+  outline-offset: 4px;
+}

@@ -21,34 +21,143 @@ function Market({ onBack, onAsk }) {
       id: "local",
       icon: "🏪",
       title: "Local Market",
-      description: "Sell your produce at a nearby agricultural or local market.",
+      description:
+        "Sell your produce at a nearby agricultural or local market.",
       advantage: "Quick local selling",
     },
     {
       id: "wholesale",
       icon: "🚚",
       title: "Wholesaler",
-      description: "Connect with traders or wholesalers who purchase farm produce in larger quantities.",
+      description:
+        "Connect with traders or wholesalers who purchase farm produce in larger quantities.",
       advantage: "Good for bulk quantities",
     },
     {
       id: "direct",
       icon: "🤝",
       title: "Direct Customers",
-      description: "Explore opportunities to sell directly to customers and reduce unnecessary middle layers.",
+      description:
+        "Explore opportunities to sell directly to customers and reduce unnecessary middle layers.",
       advantage: "Direct connection",
     },
     {
       id: "business",
       icon: "🏬",
       title: "Businesses",
-      description: "Explore potential buyers such as restaurants, shops, food businesses and other organisations.",
+      description:
+        "Explore potential buyers such as restaurants, shops, food businesses and other organisations.",
       advantage: "Potential repeat buyers",
     },
   ];
 
+  const marketInformation = [
+    {
+      id: "prices",
+      icon: "💰",
+      title: "Market prices",
+      description: "Compare available price information.",
+      question: "How can I compare current market prices for my crop?",
+    },
+    {
+      id: "nearby",
+      icon: "📍",
+      title: "Nearby markets",
+      description: "Discover relevant market locations.",
+      question: "How can I find suitable markets near me for my crop?",
+    },
+    {
+      id: "buyers",
+      icon: "🤝",
+      title: "Potential buyers",
+      description: "Find suitable buyer opportunities.",
+      question: "How can I find suitable buyers for my crop?",
+    },
+    {
+      id: "logistics",
+      icon: "🚚",
+      title: "Quantity & logistics",
+      description:
+        "Consider quantity, transport and selling needs.",
+      question:
+        "What should I consider about quantity and transport before selling my crop?",
+    },
+  ];
+
+  const sellingJourney = [
+    {
+      id: "harvest",
+      icon: "🌾",
+      title: "Harvest",
+      description: "Prepare produce",
+      question:
+        "What should I do after harvesting my crop before selling it?",
+    },
+    {
+      id: "prepare",
+      icon: "📦",
+      title: "Prepare",
+      description: "Sort & handle",
+      question:
+        "How should I sort and prepare my crop before taking it to market?",
+    },
+    {
+      id: "compare",
+      icon: "📊",
+      title: "Compare",
+      description: "Check options",
+      question:
+        "How should I compare different selling options for my crop?",
+    },
+    {
+      id: "connect",
+      icon: "🤝",
+      title: "Connect",
+      description: "Find buyer",
+      question:
+        "How can I connect with suitable buyers for my crop?",
+    },
+    {
+      id: "sell",
+      icon: "🛒",
+      title: "Sell",
+      description: "Complete sale",
+      question:
+        "What should I check before completing the sale of my crop?",
+    },
+  ];
+
+  const currentCrop = crops.find(
+    (crop) => crop.name === selectedCrop
+  );
+
+  const selectedSellingOption = sellingOptions.find(
+    (option) => option.id === selectedOption
+  );
+
+  const askAgrionWithContext = (question) => {
+    if (!onAsk) return;
+
+    const cropName = currentCrop?.name || "my crop";
+
+    const sellingMethod = selectedSellingOption
+      ? ` I am considering ${selectedSellingOption.title}.`
+      : "";
+
+    const finalQuestion = `${question} My selected crop is ${cropName}.${sellingMethod}`;
+
+    localStorage.setItem(
+      "agrionAskPrefill",
+      finalQuestion
+    );
+
+    onAsk();
+  };
+
   const handleSellingOption = (option) => {
-    setSelectedOption(option.id);
+    setSelectedOption((current) =>
+      current === option.id ? null : option.id
+    );
   };
 
   const handleCheckMarket = () => {
@@ -58,12 +167,18 @@ function Market({ onBack, onAsk }) {
   };
 
   const handleAskAGRION = () => {
-    if (onAsk) {
-      onAsk();
-    }
+    askAgrionWithContext(
+      "Help me understand how I can sell my crop and choose a suitable selling option."
+    );
   };
 
-  const currentCrop = crops.find((crop) => crop.name === selectedCrop);
+  const handleMarketInformation = (item) => {
+    askAgrionWithContext(item.question);
+  };
+
+  const handleSellingJourney = (step) => {
+    askAgrionWithContext(step.question);
+  };
 
   return (
     <div className="market-page">
@@ -132,21 +247,39 @@ function Market({ onBack, onAsk }) {
               <span>🌾</span>
             </div>
 
-            <div className="market-floating-card market-floating-top">
+            <button
+              type="button"
+              className="market-floating-card market-floating-top"
+              onClick={() =>
+                askAgrionWithContext(
+                  "How should I compare different selling options for my crop?"
+                )
+              }
+            >
               <span>📊</span>
+
               <div>
                 <strong>Compare</strong>
                 <small>Selling options</small>
               </div>
-            </div>
+            </button>
 
-            <div className="market-floating-card market-floating-bottom">
+            <button
+              type="button"
+              className="market-floating-card market-floating-bottom"
+              onClick={() =>
+                askAgrionWithContext(
+                  "How can I connect with suitable buyers for my crop?"
+                )
+              }
+            >
               <span>🤝</span>
+
               <div>
                 <strong>Connect</strong>
                 <small>With buyers</small>
               </div>
-            </div>
+            </button>
           </div>
         </section>
 
@@ -155,7 +288,9 @@ function Market({ onBack, onAsk }) {
           <div className="market-section-heading">
             <div>
               <span className="market-section-label">STEP 1</span>
+
               <h2>What do you want to sell?</h2>
+
               <p>Select the crop you want to take to the market.</p>
             </div>
           </div>
@@ -168,18 +303,27 @@ function Market({ onBack, onAsk }) {
                 className={`market-crop-card ${
                   selectedCrop === crop.name ? "selected" : ""
                 }`}
-                onClick={() => setSelectedCrop(crop.name)}
+                onClick={() => {
+                  setSelectedCrop(crop.name);
+                  setSelectedOption(null);
+                }}
               >
-                <span className="market-crop-icon">{crop.icon}</span>
+                <span className="market-crop-icon">
+                  {crop.icon}
+                </span>
 
-                <span className="market-crop-name">{crop.name}</span>
+                <span className="market-crop-name">
+                  {crop.name}
+                </span>
 
                 <span className="market-crop-quantity">
                   {crop.quantity}
                 </span>
 
                 {selectedCrop === crop.name && (
-                  <span className="market-crop-check">✓</span>
+                  <span className="market-crop-check">
+                    ✓
+                  </span>
                 )}
               </button>
             ))}
@@ -194,7 +338,9 @@ function Market({ onBack, onAsk }) {
 
           <div className="market-selected-content">
             <span>SELECTED PRODUCE</span>
+
             <h2>{currentCrop?.name}</h2>
+
             <p>
               Current quantity entered for planning:{" "}
               <strong>{currentCrop?.quantity}</strong>
@@ -214,8 +360,12 @@ function Market({ onBack, onAsk }) {
         <section className="market-section">
           <div className="market-section-heading">
             <div>
-              <span className="market-section-label">STEP 2</span>
+              <span className="market-section-label">
+                STEP 2
+              </span>
+
               <h2>Choose how you may want to sell</h2>
+
               <p>
                 Different selling channels can suit different crops,
                 quantities and situations.
@@ -229,7 +379,9 @@ function Market({ onBack, onAsk }) {
                 type="button"
                 key={option.id}
                 className={`selling-option-card ${
-                  selectedOption === option.id ? "selected" : ""
+                  selectedOption === option.id
+                    ? "selected"
+                    : ""
                 }`}
                 onClick={() => handleSellingOption(option)}
               >
@@ -239,7 +391,9 @@ function Market({ onBack, onAsk }) {
                   </div>
 
                   {selectedOption === option.id && (
-                    <span className="selling-option-check">✓</span>
+                    <span className="selling-option-check">
+                      ✓
+                    </span>
                   )}
                 </div>
 
@@ -253,6 +407,31 @@ function Market({ onBack, onAsk }) {
               </button>
             ))}
           </div>
+
+          {selectedSellingOption && (
+            <button
+              type="button"
+              className="market-selected-option-help"
+              onClick={() =>
+                askAgrionWithContext(
+                  `I am considering ${selectedSellingOption.title} for selling my ${currentCrop?.name}. Explain what I should consider before choosing this option.`
+                )
+              }
+            >
+              <span>💡</span>
+
+              <div>
+                <strong>
+                  Ask AGRION about{" "}
+                  {selectedSellingOption.title}
+                </strong>
+
+                <small>
+                  Get guidance for your selected selling option →
+                </small>
+              </div>
+            </button>
+          )}
         </section>
 
         {/* MARKET INFORMATION */}
@@ -262,6 +441,7 @@ function Market({ onBack, onAsk }) {
 
             <div>
               <h2>What AGRION will help you compare</h2>
+
               <p>
                 Future market integration will bring useful information
                 together before you decide where to sell.
@@ -270,37 +450,22 @@ function Market({ onBack, onAsk }) {
           </div>
 
           <div className="market-information-grid">
-            <div className="market-information-item">
-              <span>💰</span>
-              <div>
-                <strong>Market prices</strong>
-                <p>Compare available price information.</p>
-              </div>
-            </div>
+            {marketInformation.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                className="market-information-item"
+                onClick={() => handleMarketInformation(item)}
+              >
+                <span>{item.icon}</span>
 
-            <div className="market-information-item">
-              <span>📍</span>
-              <div>
-                <strong>Nearby markets</strong>
-                <p>Discover relevant market locations.</p>
-              </div>
-            </div>
+                <div>
+                  <strong>{item.title}</strong>
 
-            <div className="market-information-item">
-              <span>🤝</span>
-              <div>
-                <strong>Potential buyers</strong>
-                <p>Find suitable buyer opportunities.</p>
-              </div>
-            </div>
-
-            <div className="market-information-item">
-              <span>🚚</span>
-              <div>
-                <strong>Quantity & logistics</strong>
-                <p>Consider quantity, transport and selling needs.</p>
-              </div>
-            </div>
+                  <p>{item.description}</p>
+                </div>
+              </button>
+            ))}
           </div>
         </section>
 
@@ -308,44 +473,42 @@ function Market({ onBack, onAsk }) {
         <section className="market-section">
           <div className="market-section-heading">
             <div>
-              <span className="market-section-label">YOUR SELLING JOURNEY</span>
+              <span className="market-section-label">
+                YOUR SELLING JOURNEY
+              </span>
+
               <h2>From harvest to buyer</h2>
-              <p>A simple path to help you think about selling your produce.</p>
+
+              <p>
+                A simple path to help you think about selling your
+                produce.
+              </p>
             </div>
           </div>
 
           <div className="selling-journey">
             <div className="selling-journey-line"></div>
 
-            <div className="selling-journey-step active">
-              <div className="selling-journey-icon">🌾</div>
-              <strong>Harvest</strong>
-              <span>Prepare produce</span>
-            </div>
+            {sellingJourney.map((step, index) => (
+              <button
+                type="button"
+                key={step.id}
+                className={
+                  index === 0
+                    ? "selling-journey-step active"
+                    : "selling-journey-step"
+                }
+                onClick={() => handleSellingJourney(step)}
+              >
+                <div className="selling-journey-icon">
+                  {step.icon}
+                </div>
 
-            <div className="selling-journey-step">
-              <div className="selling-journey-icon">📦</div>
-              <strong>Prepare</strong>
-              <span>Sort & handle</span>
-            </div>
+                <strong>{step.title}</strong>
 
-            <div className="selling-journey-step">
-              <div className="selling-journey-icon">📊</div>
-              <strong>Compare</strong>
-              <span>Check options</span>
-            </div>
-
-            <div className="selling-journey-step">
-              <div className="selling-journey-icon">🤝</div>
-              <strong>Connect</strong>
-              <span>Find buyer</span>
-            </div>
-
-            <div className="selling-journey-step">
-              <div className="selling-journey-icon">🛒</div>
-              <strong>Sell</strong>
-              <span>Complete sale</span>
-            </div>
+                <span>{step.description}</span>
+              </button>
+            ))}
           </div>
         </section>
 
@@ -359,8 +522,8 @@ function Market({ onBack, onAsk }) {
             <h2>Ask AGRION about selling</h2>
 
             <p>
-              Ask about markets, buyers, pricing, quantities or ways to sell
-              your produce.
+              Ask about markets, buyers, pricing, quantities or ways
+              to sell your produce.
             </p>
           </div>
 
@@ -381,11 +544,11 @@ function Market({ onBack, onAsk }) {
             <strong>Important market note</strong>
 
             <p>
-              Market prices, buyer availability, transport costs and selling
-              conditions can change. AGRION should provide current information
-              from trusted sources when the backend is connected. Always
-              verify important financial or contractual decisions before
-              completing a sale.
+              Market prices, buyer availability, transport costs and
+              selling conditions can change. AGRION should provide
+              current information from trusted sources when the backend
+              is connected. Always verify important financial or
+              contractual decisions before completing a sale.
             </p>
           </div>
         </section>
@@ -393,8 +556,12 @@ function Market({ onBack, onAsk }) {
 
       <footer className="market-footer">
         <strong>🌱 AGRION</strong>
+
         <p>From Seed to Market</p>
-        <small>Growing knowledge. Growing possibilities.</small>
+
+        <small>
+          Growing knowledge. Growing possibilities.
+        </small>
       </footer>
     </div>
   );

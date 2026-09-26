@@ -37,15 +37,113 @@ import {
 } from "./data/proactiveAgrion";
 
 function App() {
-  const [page, setPage] = useState(() => {
+  /*
+   * ---------------------------------------------------------
+   * INITIAL PAGE
+   * ---------------------------------------------------------
+   */
+  const getInitialPage = () => {
     const loggedIn =
       localStorage.getItem("agrionLoggedIn");
 
     return loggedIn === "true"
       ? "home"
       : "welcome";
-  });
+  };
 
+  const [page, setPage] = useState(
+    getInitialPage
+  );
+
+  /*
+   * ---------------------------------------------------------
+   * NAVIGATION HISTORY
+   *
+   * This is the important fix.
+   *
+   * Example:
+   *
+   * home
+   *   ↓
+   * myFarm
+   *   ↓
+   * cropProblem
+   *
+   * Back:
+   * cropProblem → myFarm
+   *
+   * Back:
+   * myFarm → home
+   * ---------------------------------------------------------
+   */
+  const [pageHistory, setPageHistory] = useState(
+    () => [getInitialPage()]
+  );
+
+  /*
+   * ---------------------------------------------------------
+   * GO TO PAGE
+   *
+   * Use this instead of setPage() when moving forward.
+   * ---------------------------------------------------------
+   */
+  const navigate = (nextPage) => {
+    if (!nextPage || nextPage === page) {
+      return;
+    }
+
+    setPageHistory((currentHistory) => [
+      ...currentHistory,
+      nextPage,
+    ]);
+
+    setPage(nextPage);
+  };
+
+  /*
+   * ---------------------------------------------------------
+   * GO BACK
+   *
+   * Removes the current page from history and returns
+   * to the previous page.
+   * ---------------------------------------------------------
+   */
+  const goBack = () => {
+    setPageHistory((currentHistory) => {
+      if (currentHistory.length <= 1) {
+        return currentHistory;
+      }
+
+      const newHistory =
+        currentHistory.slice(0, -1);
+
+      const previousPage =
+        newHistory[newHistory.length - 1];
+
+      setPage(previousPage);
+
+      return newHistory;
+    });
+  };
+
+  /*
+   * ---------------------------------------------------------
+   * RESET NAVIGATION
+   *
+   * Used after login/logout so old pages do not remain
+   * inside the navigation history.
+   * ---------------------------------------------------------
+   */
+  const resetNavigation = (newPage) => {
+    setPage(newPage);
+    setPageHistory([newPage]);
+  };
+
+  /*
+   * ---------------------------------------------------------
+   * LANGUAGE
+   * ---------------------------------------------------------
+   */
   const [selectedRole, setSelectedRole] =
     useState("");
 
@@ -74,7 +172,9 @@ function App() {
     });
 
   /*
+   * ---------------------------------------------------------
    * LANGUAGE SYNC
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     const handleLanguageChange = (
@@ -107,7 +207,9 @@ function App() {
   }, []);
 
   /*
+   * ---------------------------------------------------------
    * PROACTIVE AGRION
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     const loggedIn =
@@ -123,8 +225,10 @@ function App() {
   }, []);
 
   /*
+   * ---------------------------------------------------------
    * PROACTIVE AGRION
    * React to AGRION context changes
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     const loggedIn =
@@ -154,10 +258,9 @@ function App() {
   }, []);
 
   /*
+   * ---------------------------------------------------------
    * AGRION AUTOMATIC REMINDERS
-   *
-   * Generates reminders once per day
-   * using the user's AGRION context.
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     const loggedIn =
@@ -172,6 +275,11 @@ function App() {
     generateAgrionRemindersOnce();
   }, []);
 
+  /*
+   * ---------------------------------------------------------
+   * INTERACTION CHOICE
+   * ---------------------------------------------------------
+   */
   const handleInteractionChoice = (
     mode
   ) => {
@@ -182,9 +290,14 @@ function App() {
       mode
     );
 
-    setPage("onboarding");
+    navigate("onboarding");
   };
 
+  /*
+   * ---------------------------------------------------------
+   * ONBOARDING
+   * ---------------------------------------------------------
+   */
   const handleOnboardingComplete = (
     userData
   ) => {
@@ -214,38 +327,58 @@ function App() {
       userData.name
     );
 
-    setPage("welcome");
+    navigate("welcome");
   };
 
+  /*
+   * ---------------------------------------------------------
+   * ROLE
+   * ---------------------------------------------------------
+   */
   const handleSelectRole = (role) => {
     setSelectedRole(role);
 
     if (role === "kids") {
-      setPage("kids");
+      navigate("kids");
       return;
     }
 
-    setPage("signup");
+    navigate("signup");
   };
 
+  /*
+   * ---------------------------------------------------------
+   * LOGIN
+   * ---------------------------------------------------------
+   */
   const handleLoginSuccess = () => {
     localStorage.setItem(
       "agrionLoggedIn",
       "true"
     );
 
-    setPage("home");
+    resetNavigation("home");
   };
 
+  /*
+   * ---------------------------------------------------------
+   * SIGN UP
+   * ---------------------------------------------------------
+   */
   const handleSignUpSuccess = () => {
     localStorage.setItem(
       "agrionLoggedIn",
       "true"
     );
 
-    setPage("home");
+    resetNavigation("home");
   };
 
+  /*
+   * ---------------------------------------------------------
+   * LOGOUT
+   * ---------------------------------------------------------
+   */
   const handleLogout = () => {
     setInteractionMode("");
     setSelectedRole("");
@@ -276,39 +409,44 @@ function App() {
       "agrionLanguage"
     );
 
-    setPage("interactionChoice");
-  };
-
-  const handleSelectCrop = (crop) => {
-    setSelectedCrop(crop);
-    setPage("cropJourney");
-  };
-
-  const handleBackToHome = () => {
-    setPage("home");
+    resetNavigation(
+      "interactionChoice"
+    );
   };
 
   /*
+   * ---------------------------------------------------------
+   * CROP SELECTION
+   * ---------------------------------------------------------
+   */
+  const handleSelectCrop = (crop) => {
+    setSelectedCrop(crop);
+    navigate("cropJourney");
+  };
+
+  /*
+   * ---------------------------------------------------------
    * PROACTIVE AGRION ACTIONS
+   * ---------------------------------------------------------
    */
   const handleProactiveAction = (
     action
   ) => {
     switch (action) {
       case "Complete My Farm":
-        setPage("myFarm");
+        navigate("myFarm");
         break;
 
       case "Choose a Crop":
-        setPage("cropSelection");
+        navigate("cropSelection");
         break;
 
       case "Review Crop Journey":
-        setPage("cropJourney");
+        navigate("cropJourney");
         break;
 
       case "Review My Farm":
-        setPage("myFarm");
+        navigate("myFarm");
         break;
 
       case "Check Weather":
@@ -316,7 +454,7 @@ function App() {
         break;
 
       case "Ask AGRION":
-        setPage("ask");
+        navigate("ask");
         break;
 
       default:
@@ -324,8 +462,16 @@ function App() {
     }
   };
 
+  /*
+   * ---------------------------------------------------------
+   * RENDER PAGE
+   * ---------------------------------------------------------
+   */
   const renderPage = () => {
     switch (page) {
+      /*
+       * INTERACTION CHOICE
+       */
       case "interactionChoice":
         return (
           <InteractionChoice
@@ -340,70 +486,77 @@ function App() {
               )
             }
             onLogin={() =>
-              setPage("login")
+              navigate("login")
             }
           />
         );
 
+      /*
+       * ONBOARDING
+       */
       case "onboarding":
         return (
           <AgrionOnboarding
             mode={interactionMode}
-            onBack={() =>
-              setPage(
-                "interactionChoice"
-              )
-            }
+            onBack={goBack}
             onComplete={
               handleOnboardingComplete
             }
           />
         );
 
+      /*
+       * WELCOME
+       */
       case "welcome":
         return (
           <Welcome
             onGetStarted={() =>
-              setPage("role")
+              navigate("role")
             }
             onLogin={() =>
-              setPage("login")
+              navigate("login")
             }
           />
         );
 
+      /*
+       * ROLE
+       */
       case "role":
         return (
           <RoleSelection
-            onBack={() =>
-              setPage("welcome")
-            }
+            onBack={goBack}
             onSelectRole={
               handleSelectRole
             }
           />
         );
 
+      /*
+       * LOGIN
+       */
       case "login":
         return (
           <Login
-            onBack={() =>
-              setPage("welcome")
-            }
+            onBack={goBack}
             onSignUp={() =>
-              setPage("role")
+              navigate("role")
             }
             onLoginSuccess={
               handleLoginSuccess
             }
             onForgotPassword={() =>
-              setPage(
+              navigate(
                 "forgotPassword"
               )
             }
           />
         );
 
+      /*
+       * SIGN UP
+       */
       case "signup":
         return (
           <SignUp
@@ -411,11 +564,9 @@ function App() {
             interactionMode={
               interactionMode
             }
-            onBack={() =>
-              setPage("role")
-            }
+            onBack={goBack}
             onLogin={() =>
-              setPage("login")
+              navigate("login")
             }
             onSignUpSuccess={
               handleSignUpSuccess
@@ -423,272 +574,272 @@ function App() {
           />
         );
 
+      /*
+       * FORGOT PASSWORD
+       */
       case "forgotPassword":
         return (
           <ForgotPassword
-            onBack={() =>
-              setPage("login")
-            }
+            onBack={goBack}
             onLogin={() =>
-              setPage("login")
+              navigate("login")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * HOME
+       * ---------------------------------------------------
        */
       case "home":
         return (
           <Home
             onGrow={() =>
-              setPage(
+              navigate(
                 "cropSelection"
               )
             }
             onCropProblem={() =>
-              setPage(
+              navigate(
                 "cropProblem"
               )
             }
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
             onMyFarm={() =>
-              setPage("myFarm")
+              navigate("myFarm")
             }
             onCommunity={() =>
-              setPage("community")
+              navigate("community")
             }
             onMarket={() =>
-              setPage("market")
+              navigate("market")
             }
             onLearn={() =>
-              setPage("learn")
+              navigate("learn")
             }
             onKids={() =>
-              setPage("kids")
+              navigate("kids")
             }
             onOrganic={() =>
-              setPage("organic")
+              navigate("organic")
             }
             onProfile={() =>
-              setPage("profile")
+              navigate("profile")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * ASK AGRION
+       * ---------------------------------------------------
        */
       case "ask":
         return (
           <AskAgrion
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onGrow={() =>
-              setPage(
+              navigate(
                 "cropSelection"
               )
             }
             onCropProblem={() =>
-              setPage(
+              navigate(
                 "cropProblem"
               )
             }
             onMyFarm={() =>
-              setPage("myFarm")
+              navigate("myFarm")
             }
             onMarket={() =>
-              setPage("market")
+              navigate("market")
             }
             onLearn={() =>
-              setPage("learn")
+              navigate("learn")
             }
             onOrganic={() =>
-              setPage("organic")
+              navigate("organic")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * CROP PROBLEM
+       * ---------------------------------------------------
        */
       case "cropProblem":
         return (
           <CropProblem
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * COMMUNITY
+       * ---------------------------------------------------
        */
       case "community":
         return (
           <Community
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onReels={() =>
-              setPage("reels")
+              navigate("reels")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * REELS
+       * ---------------------------------------------------
        */
       case "reels":
         return (
           <Reels
-            onBack={() =>
-              setPage("community")
-            }
+            onBack={goBack}
           />
         );
 
       /*
+       * ---------------------------------------------------
        * MARKET / SELL
+       * ---------------------------------------------------
        */
       case "market":
         return (
           <Market
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * LEARN
+       * ---------------------------------------------------
        */
       case "learn":
         return (
           <Learn
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * KIDS ZONE
+       * ---------------------------------------------------
        */
       case "kids":
         return (
           <KidsZone
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
           />
         );
 
       /*
+       * ---------------------------------------------------
        * ORGANIC FARMING
+       * ---------------------------------------------------
        */
       case "organic":
         return (
           <OrganicFarming
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * MY FARM
+       * ---------------------------------------------------
        */
       case "myFarm":
         return (
           <MyFarm
             crop={selectedCrop}
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onContinue={() =>
-              setPage(
+              navigate(
                 "cropJourney"
               )
             }
             onCheckCrop={() =>
-              setPage(
+              navigate(
                 "cropProblem"
               )
             }
             onSelectCrop={() =>
-              setPage(
+              navigate(
                 "cropSelection"
               )
             }
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * PROFILE
-       *
-       * Added navigation handlers only.
-       * Existing functionality is preserved.
+       * ---------------------------------------------------
        */
       case "profile":
         return (
           <Profile
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
 
             onMyFarm={() =>
-              setPage("myFarm")
+              navigate("myFarm")
             }
 
             onCropJourney={() =>
-              setPage(
+              navigate(
                 "cropJourney"
               )
             }
 
             onCommunity={() =>
-              setPage(
+              navigate(
                 "community"
               )
             }
 
             onLearn={() =>
-              setPage("learn")
+              navigate("learn")
             }
 
             onMarket={() =>
-              setPage("market")
+              navigate("market")
             }
 
             onOrganic={() =>
-              setPage("organic")
+              navigate("organic")
             }
 
             onSettings={() =>
-              setPage("settings")
+              navigate("settings")
             }
 
             onNotifications={() =>
-              setPage(
+              navigate(
                 "notifications"
               )
             }
@@ -700,16 +851,16 @@ function App() {
         );
 
       /*
+       * ---------------------------------------------------
        * SETTINGS
+       * ---------------------------------------------------
        */
       case "settings":
         return (
           <Settings
-            onBack={() =>
-              setPage("profile")
-            }
+            onBack={goBack}
             onProfile={() =>
-              setPage("profile")
+              navigate("profile")
             }
             onLogout={
               handleLogout
@@ -718,26 +869,26 @@ function App() {
         );
 
       /*
+       * ---------------------------------------------------
        * NOTIFICATIONS
+       * ---------------------------------------------------
        */
       case "notifications":
         return (
           <Notifications
-            onBack={() =>
-              setPage("profile")
-            }
+            onBack={goBack}
           />
         );
 
       /*
+       * ---------------------------------------------------
        * CROP SELECTION
+       * ---------------------------------------------------
        */
       case "cropSelection":
         return (
           <CropSelection
-            onBack={
-              handleBackToHome
-            }
+            onBack={goBack}
             onSelectCrop={
               handleSelectCrop
             }
@@ -745,43 +896,41 @@ function App() {
         );
 
       /*
+       * ---------------------------------------------------
        * CROP JOURNEY
+       * ---------------------------------------------------
        */
       case "cropJourney":
         return (
           <CropJourney
             crop={selectedCrop}
-            onBack={() =>
-              setPage(
-                "cropSelection"
-              )
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * CROP STAGE DETAIL
+       * ---------------------------------------------------
        */
       case "cropStageDetail":
         return (
           <CropStageDetail
             crop={selectedCrop}
-            onBack={() =>
-              setPage(
-                "cropJourney"
-              )
-            }
+            onBack={goBack}
             onAsk={() =>
-              setPage("ask")
+              navigate("ask")
             }
           />
         );
 
       /*
+       * ---------------------------------------------------
        * FALLBACK
+       * ---------------------------------------------------
        */
       default:
         return (
@@ -797,7 +946,7 @@ function App() {
               )
             }
             onLogin={() =>
-              setPage("login")
+              navigate("login")
             }
           />
         );
