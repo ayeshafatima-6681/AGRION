@@ -1,0 +1,821 @@
+/* =========================================================
+   AGRION - WELCOME PAGE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.welcome-page {
+  min-height: 100vh;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 75% 35%,
+      rgba(222, 240, 224, 0.8),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #f7fbf7 0%,
+      #ffffff 55%,
+      #f3f9f4 100%
+    );
+
+  color: #203429;
+}
+
+/* =========================
+   BACKGROUND DECORATION
+========================= */
+
+.welcome-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.welcome-glow-one {
+  width: 360px;
+  height: 360px;
+
+  top: -170px;
+  right: -100px;
+
+  background: rgba(204, 231, 208, 0.35);
+}
+
+.welcome-glow-two {
+  width: 280px;
+  height: 280px;
+
+  bottom: -150px;
+  left: -100px;
+
+  background: rgba(220, 239, 222, 0.4);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.welcome-container {
+  width: min(1180px, 88%);
+
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  padding: 32px 0 28px;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.welcome-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-logo {
+  width: 47px;
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eaf5eb;
+
+  border: 1px solid #d4e7d7;
+
+  border-radius: 14px;
+
+  font-size: 25px;
+}
+
+.welcome-brand-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.welcome-brand-text strong {
+  color: #193a28;
+
+  font-size: 21px;
+
+  letter-spacing: 1.6px;
+}
+
+.welcome-brand-text span {
+  color: #718077;
+
+  font-size: 10px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.welcome-content {
+  width: 53%;
+
+  padding-top: 85px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-label {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 13px;
+
+  margin-bottom: 22px;
+
+  background: #edf7ef;
+
+  border: 1px solid #d9eadc;
+
+  border-radius: 30px;
+
+  color: #39734b;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.welcome-content h1 {
+  margin: 0;
+
+  color: #1e3227;
+
+  font-size: clamp(54px, 7vw, 82px);
+
+  line-height: 0.99;
+
+  letter-spacing: -3px;
+
+  font-weight: 800;
+}
+
+.welcome-content h1 span {
+  color: #3d8050;
+}
+
+.welcome-content > p {
+  max-width: 570px;
+
+  margin-top: 26px;
+
+  color: #697970;
+
+  font-size: 16px;
+
+  line-height: 1.75;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.welcome-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 32px;
+}
+
+.welcome-get-started,
+.welcome-login {
+  min-height: 50px;
+
+  padding: 0 22px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.welcome-get-started {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid #316c42;
+
+  background: #316c42;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 9px 22px rgba(49, 108, 66, 0.16);
+}
+
+.welcome-get-started:hover {
+  background: #285d38;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 13px 28px rgba(49, 108, 66, 0.22);
+}
+
+.welcome-get-started span {
+  font-size: 17px;
+}
+
+.welcome-login {
+  border: 1px solid #d2ded5;
+
+  background: #ffffff;
+
+  color: #31583d;
+}
+
+.welcome-login:hover {
+  background: #f0f7f1;
+
+  transform: translateY(-2px);
+}
+
+.welcome-note {
+  margin-top: 17px !important;
+
+  color: #8a968f !important;
+
+  font-size: 11px !important;
+}
+
+/* =========================
+   VISUAL
+========================= */
+
+.welcome-visual {
+  width: 47%;
+
+  height: 470px;
+
+  position: absolute;
+
+  right: 0;
+
+  top: 135px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.welcome-main-circle {
+  width: 350px;
+  height: 350px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #ffffff 0%,
+      #edf7ef 43%,
+      #dceede 100%
+    );
+
+  border: 1px solid #d5e7d8;
+
+  box-shadow:
+    0 35px 75px rgba(40, 82, 52, 0.11),
+    inset 0 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.welcome-field {
+  font-size: 140px;
+
+  transform: translateY(-4px);
+}
+
+/* =========================
+   FLOATING CARDS
+========================= */
+
+.welcome-floating-card {
+  position: absolute;
+
+  min-width: 185px;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  border: 1px solid #dfe9e1;
+
+  border-radius: 13px;
+
+  box-shadow:
+    0 16px 35px rgba(36, 67, 45, 0.1);
+}
+
+.welcome-floating-card > span {
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #edf7ef;
+
+  border-radius: 10px;
+
+  font-size: 19px;
+}
+
+.welcome-floating-card div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.welcome-floating-card strong {
+  color: #2c4635;
+
+  font-size: 12px;
+}
+
+.welcome-floating-card small {
+  color: #849087;
+
+  font-size: 9px;
+}
+
+.welcome-card-one {
+  top: 65px;
+  left: 10px;
+}
+
+.welcome-card-two {
+  top: 210px;
+  right: -5px;
+}
+
+.welcome-card-three {
+  bottom: 55px;
+  left: 35px;
+}
+
+/* =========================
+   JOURNEY PREVIEW
+========================= */
+
+.welcome-journey {
+  width: 100%;
+
+  margin-top: auto;
+  padding-top: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-journey-item {
+  min-width: 105px;
+
+  padding: 12px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 1px solid #dfe8e1;
+
+  border-radius: 10px;
+}
+
+.welcome-journey-item span {
+  font-size: 18px;
+}
+
+.welcome-journey-item strong {
+  color: #42564a;
+
+  font-size: 11px;
+}
+
+.welcome-journey > i {
+  color: #829286;
+
+  font-style: normal;
+
+  font-size: 16px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.welcome-footer {
+  margin-top: 22px;
+
+  text-align: center;
+
+  color: #98a49d;
+
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .welcome-container {
+    width: 90%;
+  }
+
+  .welcome-content {
+    width: 54%;
+
+    padding-top: 70px;
+  }
+
+  .welcome-content h1 {
+    font-size: 58px;
+  }
+
+  .welcome-visual {
+    width: 45%;
+  }
+
+  .welcome-main-circle {
+    width: 285px;
+    height: 285px;
+  }
+
+  .welcome-field {
+    font-size: 110px;
+  }
+
+  .welcome-floating-card {
+    min-width: 150px;
+
+    padding: 10px 12px;
+  }
+
+  .welcome-floating-card > span {
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
+  }
+
+  .welcome-floating-card strong {
+    font-size: 10px;
+  }
+
+  .welcome-floating-card small {
+    font-size: 8px;
+  }
+
+  .welcome-card-one {
+    left: -5px;
+  }
+
+  .welcome-card-two {
+    right: -10px;
+  }
+
+  .welcome-card-three {
+    left: 0;
+  }
+
+  .welcome-journey {
+    gap: 7px;
+  }
+
+  .welcome-journey-item {
+    min-width: 90px;
+
+    padding: 10px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .welcome-page {
+    min-height: 100vh;
+  }
+
+  .welcome-container {
+    width: 90%;
+
+    min-height: 100vh;
+
+    padding: 25px 0 25px;
+  }
+
+  .welcome-brand {
+    justify-content: center;
+  }
+
+  .welcome-logo {
+    width: 42px;
+    height: 42px;
+
+    font-size: 22px;
+  }
+
+  .welcome-brand-text strong {
+    font-size: 18px;
+  }
+
+  .welcome-brand-text span {
+    font-size: 9px;
+  }
+
+  /* Content */
+
+  .welcome-content {
+    width: 100%;
+
+    padding-top: 55px;
+
+    text-align: center;
+  }
+
+  .welcome-label {
+    font-size: 8px;
+
+    letter-spacing: 0.7px;
+  }
+
+  .welcome-content h1 {
+    font-size: clamp(45px, 14vw, 62px);
+
+    letter-spacing: -2px;
+  }
+
+  .welcome-content > p {
+    margin: 21px auto 0;
+
+    max-width: 470px;
+
+    font-size: 14px;
+  }
+
+  .welcome-actions {
+    justify-content: center;
+
+    margin-top: 26px;
+  }
+
+  .welcome-get-started,
+  .welcome-login {
+    min-height: 47px;
+
+    padding: 0 17px;
+
+    font-size: 12px;
+  }
+
+  /* Visual */
+
+  .welcome-visual {
+    position: relative;
+
+    top: auto;
+    right: auto;
+
+    width: 100%;
+
+    height: 330px;
+
+    margin-top: 20px;
+  }
+
+  .welcome-main-circle {
+    width: 225px;
+    height: 225px;
+  }
+
+  .welcome-field {
+    font-size: 85px;
+  }
+
+  .welcome-floating-card {
+    min-width: auto;
+
+    padding: 9px 11px;
+
+    border-radius: 10px;
+  }
+
+  .welcome-floating-card > span {
+    width: 31px;
+    height: 31px;
+
+    font-size: 15px;
+  }
+
+  .welcome-floating-card strong {
+    font-size: 9px;
+  }
+
+  .welcome-floating-card small {
+    display: none;
+  }
+
+  .welcome-card-one {
+    top: 22px;
+    left: 0;
+  }
+
+  .welcome-card-two {
+    top: 105px;
+    right: 0;
+  }
+
+  .welcome-card-three {
+    left: 8px;
+    bottom: 20px;
+  }
+
+  /* Journey */
+
+  .welcome-journey {
+    margin-top: 5px;
+
+    padding-top: 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 3px;
+  }
+
+  .welcome-journey-item {
+    min-width: 0;
+
+    padding: 8px 3px;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    border-radius: 8px;
+  }
+
+  .welcome-journey-item span {
+    font-size: 16px;
+  }
+
+  .welcome-journey-item strong {
+    font-size: 8px;
+  }
+
+  .welcome-journey > i {
+    display: none;
+  }
+
+  .welcome-footer {
+    margin-top: 17px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .welcome-content {
+    padding-top: 45px;
+  }
+
+  .welcome-content h1 {
+    font-size: 45px;
+  }
+
+  .welcome-content > p {
+    font-size: 13px;
+  }
+
+  .welcome-actions {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .welcome-get-started,
+  .welcome-login {
+    width: 100%;
+  }
+
+  .welcome-visual {
+    height: 290px;
+  }
+
+  .welcome-main-circle {
+    width: 195px;
+    height: 195px;
+  }
+
+  .welcome-field {
+    font-size: 72px;
+  }
+
+  .welcome-floating-card {
+    padding: 7px 9px;
+  }
+
+  .welcome-floating-card > span {
+    width: 27px;
+    height: 27px;
+
+    font-size: 13px;
+  }
+
+  .welcome-floating-card strong {
+    font-size: 8px;
+  }
+
+  .welcome-card-one {
+    left: -2px;
+  }
+
+  .welcome-card-two {
+    right: -2px;
+  }
+
+  .welcome-card-three {
+    left: 0;
+  }
+}

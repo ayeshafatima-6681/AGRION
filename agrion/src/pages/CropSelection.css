@@ -1,0 +1,504 @@
+/* =========================================================
+   AGRION — CROP SELECTION
+   Professional • Clean • Farmer Friendly
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.crop-page {
+  min-height: 100vh;
+  background: #f7faf5;
+  color: #183b25;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.crop-navbar {
+  height: 76px;
+  padding: 0 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid #e3ebe2;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button,
+.language-btn {
+  border: none;
+  background: transparent;
+
+  color: #315a3b;
+
+  padding: 10px 13px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.back-button:hover,
+.language-btn:hover {
+  background: #edf6eb;
+  color: #3f8f49;
+}
+
+.crop-logo {
+  color: #183b25;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.crop-header {
+  max-width: 800px;
+
+  margin: auto;
+
+  padding: 70px 20px 25px;
+
+  text-align: center;
+}
+
+.crop-header-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 20px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 20px;
+
+  background: #eaf5e7;
+
+  font-size: 38px;
+
+  box-shadow: 0 10px 25px rgba(50, 100, 55, 0.07);
+}
+
+.small-heading {
+  margin: 0 0 13px;
+
+  color: #4d8b54;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+.crop-header h1 {
+  margin: 0 0 15px;
+
+  color: #183b25;
+
+  font-size: clamp(34px, 5vw, 48px);
+
+  line-height: 1.1;
+
+  letter-spacing: -1.2px;
+}
+
+.crop-header > p:last-child {
+  max-width: 600px;
+
+  margin: auto;
+
+  color: #718078;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.crop-search {
+  width: 90%;
+  max-width: 620px;
+
+  margin: 28px auto 48px;
+
+  padding: 15px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: white;
+
+  border: 1px solid #dce7dd;
+
+  border-radius: 14px;
+
+  box-shadow: 0 8px 25px rgba(35, 75, 40, 0.04);
+
+  transition: 0.2s ease;
+}
+
+.crop-search:focus-within {
+  border-color: #9fc69c;
+  box-shadow: 0 8px 28px rgba(50, 110, 55, 0.08);
+}
+
+.crop-search span {
+  font-size: 19px;
+}
+
+.crop-search input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #183b25;
+
+  font-size: 15px;
+}
+
+.crop-search input::placeholder {
+  color: #9aa59d;
+}
+
+/* =========================================================
+   CROPS
+========================================================= */
+
+.crops-section {
+  padding: 0 7% 70px;
+}
+
+.crops-grid {
+  max-width: 1120px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+.crop-card {
+  min-height: 270px;
+
+  padding: 27px 21px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: white;
+
+  border: 1px solid #e1e9df;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.crop-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #c2d9be;
+
+  box-shadow: 0 15px 35px rgba(40, 80, 40, 0.09);
+}
+
+.crop-emoji {
+  width: 76px;
+  height: 76px;
+
+  margin-bottom: 17px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 22px;
+
+  background: #edf6ea;
+
+  font-size: 43px;
+}
+
+.crop-card h2 {
+  margin: 0 0 9px;
+
+  color: #23462c;
+
+  font-size: 20px;
+}
+
+.crop-card p {
+  min-height: 45px;
+
+  margin: 0;
+
+  color: #718078;
+
+  font-size: 13.5px;
+
+  line-height: 1.55;
+}
+
+.select-crop-button {
+  margin-top: auto;
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #3f8f49;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.select-crop-button:hover {
+  background: #347b3e;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-crops {
+  grid-column: 1 / -1;
+
+  padding: 60px 20px;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px solid #e1e9df;
+
+  border-radius: 18px;
+}
+
+.no-crops > div {
+  font-size: 45px;
+}
+
+.no-crops h3 {
+  margin: 12px 0 7px;
+
+  font-size: 20px;
+}
+
+.no-crops p {
+  margin: 0;
+
+  color: #718078;
+}
+
+/* =========================================================
+   BOTTOM MESSAGE
+========================================================= */
+
+.crop-bottom {
+  width: 86%;
+  max-width: 950px;
+
+  margin: 0 auto 75px;
+
+  padding: 30px 32px;
+
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  background: #e9f5e6;
+
+  border: 1px solid #dbead8;
+
+  border-radius: 19px;
+}
+
+.crop-bottom-icon {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 15px;
+
+  background: white;
+
+  font-size: 30px;
+}
+
+.crop-bottom h3 {
+  margin: 0 0 7px;
+
+  color: #23462c;
+
+  font-size: 19px;
+}
+
+.crop-bottom p {
+  margin: 0;
+
+  color: #627267;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.crop-page footer {
+  padding: 38px 20px;
+
+  background: #173d24;
+
+  color: white;
+
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.crop-page footer p {
+  margin: 7px 0 0;
+
+  color: #b9c8bc;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+  .crops-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .crop-navbar {
+    height: auto;
+
+    padding: 13px 15px;
+  }
+
+  .crop-logo {
+    font-size: 17px;
+  }
+
+  .language-btn {
+    display: none;
+  }
+
+  .crop-header {
+    padding: 50px 20px 20px;
+  }
+
+  .crop-header h1 {
+    font-size: 32px;
+  }
+
+  .crop-header > p:last-child {
+    font-size: 14px;
+  }
+
+  .crop-search {
+    width: calc(100% - 40px);
+
+    margin: 25px 20px 40px;
+  }
+
+  .crops-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .crops-grid {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .crop-card {
+    min-height: 250px;
+  }
+
+  .crop-bottom {
+    width: calc(100% - 40px);
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+    padding: 25px 20px;
+
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .crop-header h1 {
+    font-size: 29px;
+  }
+
+  .crop-header-icon {
+    width: 64px;
+    height: 64px;
+  }
+}

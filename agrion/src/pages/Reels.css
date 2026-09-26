@@ -1,0 +1,391 @@
+/* =========================================
+   AGRION REELS
+   ========================================= */
+
+.reels-page {
+  min-height: 100vh;
+  background: #f5f8f4;
+  color: #183b25;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+.reels-header {
+  width: min(1150px, 92%);
+  margin: auto;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.reels-back-button {
+  border: none;
+  background: transparent;
+  color: #4c6953;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.reels-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reels-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 13px;
+  background: #e5f2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.reels-brand h1 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.reels-brand p {
+  margin: 4px 0 0;
+  color: #78837b;
+  font-size: 12px;
+}
+
+.create-reel-button {
+  border: none;
+  background: #3f8f49;
+  color: white;
+  padding: 11px 17px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-reel-button:hover {
+  background: #32783b;
+}
+
+/* Main */
+
+.reels-main {
+  width: min(650px, 94%);
+  margin: 15px auto 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.reel-viewer {
+  width: 430px;
+  height: 680px;
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  background: #16251a;
+  box-shadow: 0 18px 45px rgba(24, 59, 37, 0.18);
+}
+
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.reel-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    transparent 35%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* Information */
+
+.reel-information {
+  position: absolute;
+  left: 22px;
+  right: 75px;
+  bottom: 25px;
+  color: white;
+  z-index: 2;
+}
+
+.reel-farmer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+}
+
+.reel-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #3f8f49;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.reel-farmer div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.reel-farmer strong {
+  font-size: 14px;
+}
+
+.reel-farmer span {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.follow-reel-button {
+  margin-left: auto;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.reel-crop {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.reel-information h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+}
+
+.reel-information p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Actions */
+
+.reel-actions {
+  position: absolute;
+  right: 15px;
+  bottom: 25px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reel-action {
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.reel-action span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.reel-action small {
+  font-size: 10px;
+}
+
+.reel-action:hover span {
+  transform: scale(1.06);
+}
+
+/* Navigation */
+
+.reel-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.reel-navigation > button {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #dce6da;
+  border-radius: 50%;
+  background: white;
+  color: #315c38;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.reel-navigation > button:hover {
+  background: #eaf5e7;
+}
+
+.reel-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.reel-indicators span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c6d2c5;
+  cursor: pointer;
+}
+
+.reel-indicators span.active {
+  height: 20px;
+  border-radius: 5px;
+  background: #3f8f49;
+}
+
+/* Bottom information */
+
+.reels-bottom-info {
+  width: min(1000px, 92%);
+  margin: 0 auto 35px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.reels-bottom-info > div {
+  background: white;
+  border: 1px solid #e0e9de;
+  border-radius: 17px;
+  padding: 20px;
+}
+
+.reels-bottom-info span {
+  font-size: 25px;
+}
+
+.reels-bottom-info h3 {
+  margin: 10px 0 6px;
+  font-size: 15px;
+}
+
+.reels-bottom-info p {
+  margin: 0;
+  color: #707b73;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Footer */
+
+.reels-footer {
+  width: min(1000px, 92%);
+  margin: auto;
+  padding: 25px 0 35px;
+  border-top: 1px solid #dfe7dd;
+  display: flex;
+  gap: 15px;
+}
+
+.reels-footer strong {
+  font-size: 19px;
+}
+
+.reels-footer span {
+  color: #607565;
+  font-size: 13px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .reels-header {
+    flex-wrap: wrap;
+  }
+
+  .reels-brand {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .create-reel-button {
+    flex: 1;
+  }
+
+  .reels-main {
+    width: 100%;
+  }
+
+  .reel-viewer {
+    width: 100%;
+    height: calc(100vh - 150px);
+    min-height: 580px;
+    border-radius: 0;
+  }
+
+  .reel-navigation {
+    position: absolute;
+    right: 8px;
+  }
+
+  .reels-bottom-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+
+  .reels-brand h1 {
+    font-size: 21px;
+  }
+
+  .reel-information {
+    left: 16px;
+    right: 65px;
+  }
+
+  .reel-information h2 {
+    font-size: 18px;
+  }
+
+  .reel-information p {
+    font-size: 12px;
+  }
+
+  .reel-actions {
+    right: 9px;
+  }
+}

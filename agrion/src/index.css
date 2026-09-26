@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+:root {
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #173b2a;
+  background: #f7faf6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --agrion-green: #176b3a;
+  --agrion-dark-green: #0d4428;
+  --agrion-light-green: #eaf5ec;
+  --agrion-soft-green: #f5faf4;
+  --agrion-yellow: #e8b84b;
+  --agrion-text: #173b2a;
+  --agrion-muted: #66756b;
+  --agrion-white: #ffffff;
+  --agrion-border: #e1e9e2;
+  --agrion-shadow: 0 12px 35px rgba(23, 59, 42, 0.08);
+  --agrion-radius: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(232, 245, 236, 0.8), transparent 30%),
+    #f7faf6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: #cfe8d5;
+  color: #0d4428;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a9c7b0;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #176b3a;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.agrion-page {
+  min-height: 100vh;
+}
+
+.agrion-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.agrion-section {
+  padding: 80px 0;
+}
+
+.agrion-section-title {
+  margin: 0;
+  color: var(--agrion-dark-green);
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+}
+
+.agrion-section-subtitle {
+  max-width: 650px;
+  margin: 14px 0 0;
+  color: var(--agrion-muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.agrion-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 22px;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.agrion-button:hover {
+  transform: translateY(-2px);
+}
+
+.agrion-button-primary {
+  color: white;
+  background: var(--agrion-green);
+  box-shadow: 0 10px 25px rgba(23, 107, 58, 0.2);
+}
+
+.agrion-button-primary:hover {
+  background: var(--agrion-dark-green);
+}
+
+.agrion-button-secondary {
+  color: var(--agrion-green);
+  background: white;
+  border: 1px solid var(--agrion-border);
+}
+
+.agrion-button-secondary:hover {
+  border-color: #b9d2bf;
+  box-shadow: var(--agrion-shadow);
+}
+
+@media (max-width: 700px) {
+  .agrion-container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .agrion-section {
+    padding: 55px 0;
+  }
+
+  .agrion-section-title {
+    font-size: 32px;
+  }
+
+  .agrion-section-subtitle {
+    font-size: 15px;
+  }
+}

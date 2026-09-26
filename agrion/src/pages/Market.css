@@ -1,0 +1,1063 @@
+/* ================================
+   AGRION — MARKET / SELL
+   ================================ */
+
+.market-page {
+  min-height: 100vh;
+  background: #f6faf7;
+  color: #173b2a;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+
+.market-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 72px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #e2eee6;
+}
+
+.market-back-button {
+  border: none;
+  background: transparent;
+  color: #376b4d;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: 0.2s ease;
+}
+
+.market-back-button:hover {
+  color: #174f31;
+  transform: translateX(-3px);
+}
+
+.market-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.market-logo-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #e8f5eb;
+  font-size: 23px;
+}
+
+.market-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.market-logo-text strong {
+  font-size: 19px;
+  letter-spacing: 0.5px;
+  color: #164d30;
+}
+
+.market-logo-text span {
+  margin-top: 4px;
+  color: #789181;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.market-navbar-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #567361;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.market-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #54a66e;
+  box-shadow: 0 0 0 4px #e8f5eb;
+}
+
+/* ================================
+   MAIN
+   ================================ */
+
+.market-main {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  padding: 55px 0 80px;
+}
+
+/* ================================
+   HERO
+   ================================ */
+
+.market-hero {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 55px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #174d30 0%, #28734a 55%, #3d8b5d 100%);
+  color: white;
+  box-shadow: 0 20px 50px rgba(28, 91, 52, 0.18);
+}
+
+.market-hero::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  right: -110px;
+  top: -150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.market-hero::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  right: 250px;
+  bottom: -180px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.market-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.market-label {
+  display: inline-flex;
+  margin-bottom: 15px;
+  color: #ccebd6;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.market-hero h1 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -1.8px;
+}
+
+.market-hero h1 span {
+  color: #c9efcf;
+}
+
+.market-hero p {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: #e1f1e5;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.market-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.market-primary-button,
+.market-secondary-button {
+  border: none;
+  border-radius: 13px;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.market-primary-button {
+  background: white;
+  color: #1d5a36;
+}
+
+.market-primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
+}
+
+.market-secondary-button {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.market-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ================================
+   HERO VISUAL
+   ================================ */
+
+.market-hero-visual {
+  position: relative;
+  z-index: 2;
+  width: 330px;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+.market-visual-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 190px;
+  height: 190px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 0 22px rgba(255, 255, 255, 0.035),
+    0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+.market-visual-circle span {
+  font-size: 86px;
+}
+
+.market-floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 145px;
+  padding: 13px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #244d35;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+}
+
+.market-floating-card > span {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #edf7ef;
+  font-size: 18px;
+}
+
+.market-floating-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.market-floating-card strong {
+  font-size: 12px;
+}
+
+.market-floating-card small {
+  margin-top: 3px;
+  color: #819186;
+  font-size: 9px;
+}
+
+.market-floating-top {
+  top: 20px;
+  right: 0;
+}
+
+.market-floating-bottom {
+  left: 0;
+  bottom: 20px;
+}
+
+/* ================================
+   SECTIONS
+   ================================ */
+
+.market-section {
+  margin-top: 50px;
+}
+
+.market-section-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.market-section-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #4f8963;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.market-section-heading h2 {
+  margin: 0;
+  color: #173f2a;
+  font-size: 27px;
+  letter-spacing: -0.5px;
+}
+
+.market-section-heading p {
+  max-width: 700px;
+  margin: 7px 0 0;
+  color: #718879;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ================================
+   CROP GRID
+   ================================ */
+
+.market-crop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.market-crop-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 21px 14px;
+  border: 1px solid #e1ece4;
+  border-radius: 18px;
+  background: white;
+  color: #244b35;
+  cursor: pointer;
+  box-shadow: 0 7px 20px rgba(30, 77, 48, 0.035);
+  transition: 0.25s ease;
+}
+
+.market-crop-card:hover {
+  transform: translateY(-3px);
+  border-color: #bdd8c4;
+}
+
+.market-crop-card.selected {
+  border-color: #5a9a6b;
+  background: #f1f9f3;
+  box-shadow: 0 8px 25px rgba(49, 111, 70, 0.1);
+}
+
+.market-crop-icon {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background: #edf7ef;
+  font-size: 27px;
+}
+
+.market-crop-name {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.market-crop-quantity {
+  margin-top: 5px;
+  color: #839388;
+  font-size: 10px;
+}
+
+.market-crop-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #347c4f;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* ================================
+   SELECTED CROP
+   ================================ */
+
+.market-selected-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: #edf7ef;
+  border: 1px solid #d9eadd;
+}
+
+.market-selected-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: white;
+  font-size: 29px;
+}
+
+.market-selected-content {
+  flex: 1;
+}
+
+.market-selected-content > span {
+  color: #689078;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+.market-selected-content h2 {
+  margin: 3px 0 0;
+  color: #1d4e31;
+  font-size: 20px;
+}
+
+.market-selected-content p {
+  margin: 4px 0 0;
+  color: #6f8577;
+  font-size: 11px;
+}
+
+.market-selected-content strong {
+  color: #3d654b;
+}
+
+.market-check-button {
+  border: none;
+  border-radius: 11px;
+  padding: 12px 17px;
+  background: #28734a;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.market-check-button:hover {
+  background: #1d5c39;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   SELLING OPTIONS
+   ================================ */
+
+.selling-options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.selling-option-card {
+  text-align: left;
+  border: 1px solid #e2ece5;
+  border-radius: 20px;
+  padding: 22px;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 7px 22px rgba(30, 77, 48, 0.035);
+  transition: 0.25s ease;
+}
+
+.selling-option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(30, 77, 48, 0.08);
+}
+
+.selling-option-card.selected {
+  border-color: #5a9a6b;
+  background: #f3faf4;
+}
+
+.selling-option-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.selling-option-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #edf7ef;
+  font-size: 23px;
+}
+
+.selling-option-check {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #347c4f;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.selling-option-card h3 {
+  margin: 17px 0 7px;
+  color: #234a34;
+  font-size: 16px;
+}
+
+.selling-option-card p {
+  min-height: 58px;
+  margin: 0;
+  color: #788b7e;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.selling-option-advantage {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #f0f6f1;
+  color: #477056;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* ================================
+   MARKET INFORMATION
+   ================================ */
+
+.market-information {
+  margin-top: 50px;
+  padding: 30px;
+  border-radius: 24px;
+  background: white;
+  border: 1px solid #e2ece5;
+  box-shadow: 0 8px 25px rgba(30, 77, 48, 0.04);
+}
+
+.market-information-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.market-information-heading > span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #edf7ef;
+  font-size: 23px;
+}
+
+.market-information-heading h2 {
+  margin: 0;
+  color: #244c35;
+  font-size: 20px;
+}
+
+.market-information-heading p {
+  margin: 5px 0 0;
+  color: #7c8f82;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.market-information-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.market-information-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 17px;
+  border-radius: 15px;
+  background: #f7faf8;
+}
+
+.market-information-item > span {
+  font-size: 20px;
+}
+
+.market-information-item strong {
+  display: block;
+  color: #345941;
+  font-size: 12px;
+}
+
+.market-information-item p {
+  margin: 4px 0 0;
+  color: #87968c;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* ================================
+   SELLING JOURNEY
+   ================================ */
+
+.selling-journey {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.selling-journey-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 35px;
+  height: 3px;
+  background: #dce9df;
+}
+
+.selling-journey-step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.selling-journey-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  border: 4px solid white;
+  border-radius: 50%;
+  background: #edf6ef;
+  box-shadow: 0 0 0 1px #d6e4d9;
+  font-size: 21px;
+}
+
+.selling-journey-step.active .selling-journey-icon {
+  background: #dcefe1;
+  box-shadow: 0 0 0 2px #62a275;
+}
+
+.selling-journey-step strong {
+  display: block;
+  margin-top: 12px;
+  color: #31543e;
+  font-size: 12px;
+}
+
+.selling-journey-step span {
+  display: block;
+  margin-top: 4px;
+  color: #87958b;
+  font-size: 10px;
+}
+
+/* ================================
+   ASK AGRION
+   ================================ */
+
+.market-ask-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 50px;
+  padding: 27px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #eaf6ed, #f4faf5);
+  border: 1px solid #d9eadd;
+}
+
+.market-ask-icon {
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: white;
+  font-size: 24px;
+}
+
+.market-ask-content {
+  flex: 1;
+}
+
+.market-ask-content > span {
+  color: #5b8b69;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+.market-ask-content h2 {
+  margin: 4px 0 0;
+  color: #214c32;
+  font-size: 18px;
+}
+
+.market-ask-content p {
+  margin: 5px 0 0;
+  color: #718578;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.market-ask-button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  background: #28734a;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.market-ask-button:hover {
+  background: #1d5c39;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   SAFETY
+   ================================ */
+
+.market-safety {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 20px;
+  padding: 19px;
+  border: 1px solid #eadfca;
+  border-radius: 17px;
+  background: #fffaf0;
+}
+
+.market-safety-icon {
+  font-size: 19px;
+}
+
+.market-safety strong {
+  display: block;
+  color: #725d35;
+  font-size: 12px;
+}
+
+.market-safety p {
+  margin: 5px 0 0;
+  color: #8b7959;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+
+.market-footer {
+  padding: 38px 20px;
+  text-align: center;
+  background: white;
+  border-top: 1px solid #e1ece4;
+}
+
+.market-footer strong {
+  color: #245d3b;
+  font-size: 17px;
+}
+
+.market-footer p {
+  margin: 6px 0 3px;
+  color: #718578;
+  font-size: 12px;
+}
+
+.market-footer small {
+  color: #a0ada4;
+  font-size: 10px;
+}
+
+/* ================================
+   TABLET
+   ================================ */
+
+@media (max-width: 1000px) {
+  .market-hero {
+    padding: 45px;
+  }
+
+  .market-hero-visual {
+    width: 270px;
+    transform: scale(0.9);
+  }
+
+  .market-crop-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .selling-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .market-information-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media (max-width: 720px) {
+  .market-navbar {
+    height: 64px;
+    padding: 0 5%;
+  }
+
+  .market-logo-text span {
+    display: none;
+  }
+
+  .market-logo-text strong {
+    font-size: 17px;
+  }
+
+  .market-logo-icon {
+    width: 37px;
+    height: 37px;
+    font-size: 20px;
+  }
+
+  .market-navbar-status {
+    font-size: 10px;
+  }
+
+  .market-main {
+    width: 90%;
+    padding: 30px 0 55px;
+  }
+
+  .market-hero {
+    min-height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 33px 25px;
+    border-radius: 23px;
+  }
+
+  .market-hero h1 {
+    font-size: 39px;
+  }
+
+  .market-hero p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .market-hero-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .market-primary-button,
+  .market-secondary-button {
+    width: 100%;
+  }
+
+  .market-hero-visual {
+    width: 100%;
+    height: 260px;
+    margin-top: 5px;
+    transform: scale(0.88);
+  }
+
+  .market-floating-top {
+    right: 3%;
+  }
+
+  .market-floating-bottom {
+    left: 3%;
+  }
+
+  .market-section {
+    margin-top: 38px;
+  }
+
+  .market-section-heading h2 {
+    font-size: 23px;
+  }
+
+  .market-section-heading p {
+    font-size: 12px;
+  }
+
+  .market-crop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .market-crop-card {
+    padding: 17px 10px;
+  }
+
+  .market-selected-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .market-selected-content {
+    min-width: calc(100% - 75px);
+  }
+
+  .market-check-button {
+    width: 100%;
+  }
+
+  .selling-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selling-option-card p {
+    min-height: auto;
+  }
+
+  .market-information {
+    padding: 22px;
+  }
+
+  .market-information-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selling-journey {
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+
+  .selling-journey-line {
+    left: 55px;
+    right: 55px;
+  }
+
+  .selling-journey-step {
+    min-width: 105px;
+  }
+
+  .market-ask-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 22px;
+  }
+
+  .market-ask-content {
+    min-width: calc(100% - 72px);
+  }
+
+  .market-ask-button {
+    width: 100%;
+  }
+}
+
+/* ================================
+   SMALL PHONES
+   ================================ */
+
+@media (max-width: 420px) {
+  .market-back-button {
+    font-size: 13px;
+  }
+
+  .market-navbar-status {
+    display: none;
+  }
+
+  .market-hero {
+    padding: 29px 21px;
+  }
+
+  .market-hero h1 {
+    font-size: 34px;
+  }
+
+  .market-hero-visual {
+    height: 235px;
+    transform: scale(0.78);
+    transform-origin: center;
+  }
+
+  .market-crop-card {
+    padding: 15px 8px;
+  }
+
+  .market-crop-icon {
+    width: 43px;
+    height: 43px;
+    font-size: 23px;
+  }
+
+  .market-crop-name {
+    font-size: 12px;
+  }
+
+  .market-selected-card {
+    padding: 18px;
+  }
+
+  .market-information {
+    padding: 18px;
+  }
+
+  .market-safety {
+    padding: 16px;
+  }
+}

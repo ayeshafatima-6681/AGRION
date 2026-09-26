@@ -1,0 +1,1052 @@
+/* =========================================================
+   AGRION — ASK AGRION
+   Premium AI Farming Assistant
+========================================================= */
+
+.ask-agrion-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(90, 174, 103, 0.12), transparent 28%),
+    radial-gradient(circle at 92% 12%, rgba(193, 221, 160, 0.18), transparent 25%),
+    #f6faf6;
+  color: #173c27;
+  font-family: inherit;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.ask-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  min-height: 76px;
+  padding: 0 5%;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(31, 91, 48, 0.08);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.ask-back-button {
+  justify-self: start;
+
+  border: 1px solid #dce9df;
+  border-radius: 12px;
+
+  padding: 9px 14px;
+
+  background: #ffffff;
+  color: #355842;
+
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ask-back-button:hover {
+  background: #eef7f0;
+  border-color: #c6ddca;
+  transform: translateX(-2px);
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.ask-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ask-logo > span {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: linear-gradient(145deg, #e5f5e7, #cce8d1);
+
+  font-size: 1.35rem;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ask-logo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.ask-logo strong {
+  color: #174b2b;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.ask-logo small {
+  margin-top: 2px;
+  color: #7b9180;
+  font-size: 0.66rem;
+}
+
+.ask-navbar-status {
+  justify-self: end;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #dcebdd;
+  border-radius: 999px;
+
+  background: #f7fbf7;
+
+  color: #52705a;
+
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #48a85b;
+
+  box-shadow: 0 0 0 4px rgba(72, 168, 91, 0.12);
+
+  animation: agrionStatusPulse 2s infinite;
+}
+
+@keyframes agrionStatusPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.ask-main {
+  width: min(1080px, 90%);
+
+  margin: 0 auto;
+
+  padding: 72px 0 70px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.ask-hero {
+  position: relative;
+
+  margin-bottom: 38px;
+
+  text-align: center;
+}
+
+.ask-hero::before {
+  content: "";
+
+  position: absolute;
+
+  top: -90px;
+  left: 50%;
+
+  width: 330px;
+  height: 330px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(102, 183, 111, 0.07);
+
+  filter: blur(3px);
+
+  pointer-events: none;
+}
+
+.ask-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ask-hero-icon {
+  width: 76px;
+  height: 76px;
+
+  margin: 0 auto 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  background: linear-gradient(
+    145deg,
+    #dff2e2,
+    #c2e4c8
+  );
+
+  font-size: 2rem;
+
+  box-shadow:
+    0 14px 35px rgba(42, 111, 56, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ask-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color: #39904e;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+}
+
+.ask-hero h1 {
+  margin: 0;
+
+  color: #173d27;
+
+  font-size: clamp(2.7rem, 6vw, 4.7rem);
+
+  font-weight: 800;
+
+  line-height: 1.02;
+
+  letter-spacing: -0.045em;
+}
+
+.ask-hero h1 span {
+  color: #3b9850;
+}
+
+.ask-hero p {
+  width: min(620px, 100%);
+
+  margin: 20px auto 0;
+
+  color: #6d8072;
+
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   CHAT CARD
+========================================================= */
+
+.ask-chat-card {
+  overflow: hidden;
+
+  border: 1px solid rgba(48, 107, 58, 0.1);
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 22px 65px rgba(34, 76, 42, 0.09),
+    0 3px 12px rgba(34, 76, 42, 0.04);
+}
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.ask-welcome {
+  min-height: 245px;
+
+  padding: 48px 30px 35px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(104, 183, 112, 0.12),
+      transparent 48%
+    ),
+    #ffffff;
+}
+
+.welcome-icon {
+  width: 62px;
+  height: 62px;
+
+  margin-bottom: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #eef8ef;
+
+  font-size: 1.65rem;
+}
+
+.ask-welcome h2 {
+  margin: 0;
+
+  color: #1c452c;
+
+  font-size: 1.45rem;
+  font-weight: 750;
+}
+
+.ask-welcome p {
+  margin: 9px 0 0;
+
+  color: #7b8c80;
+
+  font-size: 0.88rem;
+}
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.message-list {
+  max-height: 510px;
+
+  overflow-y: auto;
+
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fbfefb,
+      #f7faf7
+    );
+}
+
+.message-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  background: #c8dccb;
+  border-radius: 20px;
+}
+
+.message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-avatar {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #e5f3e8;
+
+  font-size: 1rem;
+}
+
+.user-avatar {
+  background: #edf2ee;
+}
+
+.message-bubble {
+  max-width: min(700px, 78%);
+
+  padding: 14px 17px;
+
+  border: 1px solid #e0ebe2;
+  border-radius: 18px 18px 18px 5px;
+
+  background: #ffffff;
+
+  color: #385140;
+
+  font-size: 0.9rem;
+  line-height: 1.65;
+
+  box-shadow: 0 5px 16px rgba(35, 81, 43, 0.045);
+}
+
+.message-row.user .message-bubble {
+  border: none;
+  border-radius: 18px 18px 5px 18px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #31864a,
+    #216d38
+  );
+
+  box-shadow:
+    0 8px 20px rgba(39, 113, 57, 0.17);
+}
+
+/* =========================================================
+   SUGGESTIONS
+========================================================= */
+
+.suggestions-section {
+  padding: 25px 28px;
+
+  border-top: 1px solid #edf2ed;
+
+  background: #ffffff;
+}
+
+.suggestions-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 13px;
+
+  color: #45604c;
+
+  font-size: 0.84rem;
+}
+
+.suggestions-heading span {
+  font-size: 1rem;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.suggestion-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #dbe8dd;
+  border-radius: 999px;
+
+  background: #f8fbf8;
+
+  color: #41604a;
+
+  font-family: inherit;
+  font-size: 0.79rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.suggestion-button:hover {
+  transform: translateY(-2px);
+
+  border-color: #b9d5bd;
+
+  background: #eef8f0;
+
+  color: #216b35;
+
+  box-shadow: 0 7px 18px rgba(42, 108, 54, 0.08);
+}
+
+.suggestion-button span {
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.ask-input-area {
+  margin: 0 22px;
+
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 8px 9px 8px 12px;
+
+  border: 1px solid #d9e7db;
+  border-radius: 18px;
+
+  background: #f7faf7;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.ask-input-area:focus-within {
+  border-color: #82bb8c;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(63, 143, 73, 0.08);
+}
+
+.ask-input-area textarea {
+  flex: 1;
+
+  min-width: 0;
+  min-height: 42px;
+  max-height: 120px;
+
+  padding: 10px 4px;
+
+  resize: none;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #294532;
+
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.ask-input-area textarea::placeholder {
+  color: #96a69b;
+}
+
+/* =========================================================
+   INPUT BUTTONS
+========================================================= */
+
+.voice-button,
+.send-button {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  font-family: inherit;
+  font-size: 1.05rem;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.voice-button {
+  border: none;
+
+  background: transparent;
+
+  color: #54725c;
+}
+
+.voice-button:hover {
+  background: #e6f2e8;
+
+  transform: scale(1.04);
+}
+
+.voice-button.listening {
+  background: #ffe9e9;
+
+  color: #d13d3d;
+
+  animation: agrionListening 1.1s ease-in-out infinite;
+}
+
+@keyframes agrionListening {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(209, 61, 61, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(209, 61, 61, 0.06);
+  }
+}
+
+.send-button {
+  border: none;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #31864a,
+    #216d38
+  );
+
+  box-shadow:
+    0 7px 16px rgba(39, 112, 56, 0.18);
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 20px rgba(39, 112, 56, 0.23);
+}
+
+.send-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.send-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* =========================================================
+   INPUT HINT
+========================================================= */
+
+.input-hint {
+  margin: 9px 24px 22px;
+
+  text-align: right;
+
+  color: #9aa79e;
+
+  font-size: 0.68rem;
+}
+
+/* =========================================================
+   SAFETY NOTE
+========================================================= */
+
+.ask-safety {
+  margin-top: 24px;
+
+  padding: 19px 21px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  border: 1px solid #eee5c5;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf6,
+      #fffaf0
+    );
+
+  box-shadow: 0 5px 18px rgba(108, 92, 40, 0.035);
+}
+
+.safety-icon {
+  width: 35px;
+  height: 35px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #fff4cf;
+
+  font-size: 1rem;
+}
+
+.ask-safety strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #63572d;
+
+  font-size: 0.82rem;
+}
+
+.ask-safety p {
+  margin: 0;
+
+  color: #82774f;
+
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.ask-footer {
+  padding: 38px 20px 42px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(77, 153, 87, 0.18),
+      transparent 35%
+    ),
+    #153a22;
+
+  color: #ffffff;
+}
+
+.ask-footer strong {
+  font-size: 1rem;
+
+  letter-spacing: 0.05em;
+}
+
+.ask-footer p {
+  margin: 7px 0 3px;
+
+  color: #c6ddca;
+
+  font-size: 0.78rem;
+}
+
+.ask-footer small {
+  color: #8eae95;
+
+  font-size: 0.68rem;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .ask-navbar {
+    min-height: 68px;
+    padding: 0 4%;
+  }
+
+  .ask-main {
+    width: 94%;
+    padding: 55px 0;
+  }
+
+  .ask-hero h1 {
+    font-size: clamp(2.25rem, 8vw, 3.4rem);
+  }
+
+  .ask-chat-card {
+    border-radius: 23px;
+  }
+
+  .suggestions-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .ask-navbar {
+    min-height: 64px;
+
+    grid-template-columns: auto 1fr;
+
+    gap: 10px;
+
+    padding: 0 4%;
+  }
+
+  .ask-logo {
+    justify-self: center;
+  }
+
+  .ask-navbar-status {
+    display: none;
+  }
+
+  .ask-back-button {
+    font-size: 0.78rem;
+  }
+
+  .ask-logo > span {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 11px;
+
+    font-size: 1.05rem;
+  }
+
+  .ask-logo strong {
+    font-size: 0.84rem;
+  }
+
+  .ask-logo small {
+    display: none;
+  }
+
+  .ask-main {
+    width: 94%;
+
+    padding:
+      43px
+      0
+      55px;
+  }
+
+  .ask-hero-icon {
+    width: 62px;
+    height: 62px;
+
+    border-radius: 19px;
+
+    font-size: 1.65rem;
+  }
+
+  .ask-label {
+    font-size: 0.6rem;
+  }
+
+  .ask-hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .ask-hero p {
+    margin-top: 15px;
+
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
+  .ask-chat-card {
+    border-radius: 20px;
+  }
+
+  .ask-welcome {
+    min-height: 210px;
+
+    padding: 34px 18px 25px;
+  }
+
+  .welcome-icon {
+    width: 54px;
+    height: 54px;
+
+    border-radius: 17px;
+
+    font-size: 1.45rem;
+  }
+
+  .ask-welcome h2 {
+    font-size: 1.2rem;
+  }
+
+  .ask-welcome p {
+    font-size: 0.8rem;
+  }
+
+  .message-list {
+    max-height: 430px;
+
+    padding: 18px 13px;
+
+    gap: 14px;
+  }
+
+  .message-avatar {
+    width: 33px;
+    height: 33px;
+
+    border-radius: 10px;
+
+    font-size: 0.88rem;
+  }
+
+  .message-bubble {
+    max-width: 80%;
+
+    padding: 11px 13px;
+
+    font-size: 0.82rem;
+
+    line-height: 1.55;
+  }
+
+  .suggestions-section {
+    padding: 20px 14px 17px;
+  }
+
+  .suggestions-heading {
+    font-size: 0.8rem;
+  }
+
+  .suggestions-list {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .suggestion-button {
+    width: 100%;
+
+    justify-content: flex-start;
+
+    padding: 10px 12px;
+
+    border-radius: 12px;
+
+    font-size: 0.76rem;
+
+    text-align: left;
+  }
+
+  .ask-input-area {
+    min-height: 56px;
+
+    margin: 0 11px;
+
+    padding: 7px;
+
+    border-radius: 15px;
+  }
+
+  .ask-input-area textarea {
+    font-size: 0.82rem;
+  }
+
+  .voice-button,
+  .send-button {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+  }
+
+  .input-hint {
+    margin:
+      8px
+      12px
+      18px;
+
+    font-size: 0.61rem;
+  }
+
+  .ask-safety {
+    padding: 15px;
+
+    border-radius: 15px;
+  }
+
+  .ask-safety p {
+    font-size: 0.68rem;
+  }
+
+  .ask-footer {
+    padding: 29px 16px 34px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .ask-back-button {
+    font-size: 0.72rem;
+    padding: 8px 10px;
+  }
+
+  .ask-logo strong {
+    font-size: 0.78rem;
+  }
+
+  .ask-hero h1 {
+    font-size: 2rem;
+  }
+
+  .ask-hero p {
+    font-size: 0.79rem;
+  }
+}

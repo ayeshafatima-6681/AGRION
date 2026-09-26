@@ -1,0 +1,300 @@
+/* =========================================================
+   AGRION GLOBAL APP FOUNDATION
+   ========================================================= */
+
+#root {
+  width: 100%;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(23, 107, 58, 0.25);
+  outline-offset: 3px;
+}
+
+/* Shared page wrapper */
+
+.page-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(232, 245, 236, 0.8),
+      transparent 25%
+    ),
+    #f7faf6;
+}
+
+/* Shared navigation */
+
+.app-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(225, 233, 226, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.app-navbar-inner {
+  width: min(1180px, calc(100% - 40px));
+  min-height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.app-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #0d4428;
+}
+
+.app-brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #eaf5ec;
+  font-size: 23px;
+}
+
+.app-brand-name {
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.app-brand-tagline {
+  color: #7b887f;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.app-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.app-nav-link {
+  border: 0;
+  background: transparent;
+  color: #506157;
+  padding: 9px 13px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.app-nav-link:hover {
+  color: #176b3a;
+  background: #f0f7f1;
+}
+
+.app-nav-link.active {
+  color: #176b3a;
+  background: #eaf5ec;
+}
+
+.app-profile-button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #176b3a;
+  color: white;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* Shared cards */
+
+.agrion-card {
+  background: white;
+  border: 1px solid var(--agrion-border);
+  border-radius: var(--agrion-radius);
+  box-shadow: var(--agrion-shadow);
+}
+
+.agrion-card-interactive {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.agrion-card-interactive:hover {
+  transform: translateY(-5px);
+  border-color: #c8ddcc;
+  box-shadow: 0 18px 45px rgba(23, 59, 42, 0.12);
+}
+
+/* Shared form styling */
+
+.agrion-input,
+.agrion-textarea,
+.agrion-select {
+  width: 100%;
+  border: 1px solid #dbe5dc;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #173b2a;
+  padding: 13px 15px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.agrion-input::placeholder,
+.agrion-textarea::placeholder {
+  color: #9aa69e;
+}
+
+.agrion-input:focus,
+.agrion-textarea:focus,
+.agrion-select:focus {
+  border-color: #176b3a;
+  box-shadow: 0 0 0 4px rgba(23, 107, 58, 0.09);
+  outline: none;
+}
+
+.agrion-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Shared badges */
+
+.agrion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #eaf5ec;
+  color: #176b3a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Shared empty/error states */
+
+.agrion-error {
+  border: 1px solid #f0caca;
+  background: #fff5f5;
+  color: #a33131;
+  border-radius: 13px;
+  padding: 12px 14px;
+}
+
+.agrion-empty {
+  padding: 45px 20px;
+  text-align: center;
+  color: #718077;
+  background: white;
+  border: 1px dashed #d5e1d7;
+  border-radius: 18px;
+}
+
+/* Mobile bottom navigation */
+
+.app-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .app-navbar-inner {
+    min-height: 68px;
+  }
+
+  .app-nav-links {
+    display: none;
+  }
+
+  .app-profile-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .app-mobile-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e9e1;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(23, 59, 42, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .app-mobile-nav button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 13px;
+    background: transparent;
+    color: #718077;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .app-mobile-nav button.active {
+    background: #eaf5ec;
+    color: #176b3a;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-brand-tagline {
+    display: none;
+  }
+
+  .app-brand-name {
+    font-size: 18px;
+  }
+
+  .app-brand-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

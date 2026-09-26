@@ -1,0 +1,431 @@
+* {
+  box-sizing: border-box;
+}
+
+.stage-detail-page {
+  min-height: 100vh;
+  background: #f7faf5;
+  color: #183b25;
+}
+
+
+/* NAVBAR */
+
+.stage-detail-navbar {
+  height: 76px;
+  padding: 0 7%;
+  background: white;
+  border-bottom: 1px solid #e5ece5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stage-back-button {
+  border: none;
+  background: transparent;
+  color: #315a3b;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.stage-detail-logo {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.stage-step {
+  color: #4d8b54;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* HERO */
+
+.stage-detail-hero {
+  text-align: center;
+  padding: 65px 20px 55px;
+}
+
+.stage-big-icon {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 25px;
+
+  background: white;
+  border: 1px solid #dce7dd;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 55px;
+}
+
+.stage-label {
+  color: #4d8b54;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.stage-detail-hero h1 {
+  font-size: 50px;
+  margin: 10px 0 15px;
+}
+
+.stage-description {
+  max-width: 700px;
+  margin: auto;
+
+  color: #718078;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* CONTENT */
+
+.stage-detail-content {
+  max-width: 950px;
+  margin: auto;
+  padding: 0 20px 80px;
+}
+
+
+/* GOAL */
+
+.goal-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background: #e9f5e6;
+  border: none;
+  border-radius: 20px;
+  padding: 28px;
+
+  margin-bottom: 45px;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+
+  background: white;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+}
+
+.card-label {
+  color: #4d8b54;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0 0 5px;
+}
+
+.goal-card h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+
+/* SECTIONS */
+
+.detail-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.section-title > span {
+  font-size: 32px;
+}
+
+.section-title p {
+  margin: 0 0 4px;
+
+  color: #4d8b54;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 27px;
+}
+
+
+/* LEARNING */
+
+.learning-list {
+  background: white;
+  border: 1px solid #e2ebe1;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.learning-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 20px;
+
+  border-bottom: 1px solid #edf1ed;
+}
+
+.learning-item:last-child {
+  border-bottom: none;
+}
+
+.learning-item > span {
+  width: 28px;
+  height: 28px;
+
+  background: #e9f5e6;
+  color: #3f8f49;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+}
+
+.learning-item p {
+  margin: 0;
+  color: #526158;
+  line-height: 1.5;
+}
+
+
+/* MONITOR */
+
+.monitor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.monitor-card {
+  background: white;
+  border: 1px solid #e2ebe1;
+  border-radius: 15px;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.monitor-card span {
+  font-size: 22px;
+}
+
+.monitor-card strong {
+  font-size: 15px;
+}
+
+
+/* QUESTIONS */
+
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-button {
+  width: 100%;
+
+  border: 1px solid #e2ebe1;
+  background: white;
+
+  padding: 18px 20px;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #315a3b;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.question-button:hover {
+  border-color: #a9c7aa;
+}
+
+.question-button strong {
+  font-size: 20px;
+}
+
+
+/* SAFETY */
+
+.safety-note {
+  display: flex;
+  gap: 15px;
+
+  padding: 22px;
+
+  background: #fff9e8;
+  border: 1px solid #f1e6bd;
+  border-radius: 16px;
+
+  margin-bottom: 30px;
+}
+
+.safety-note > div:first-child {
+  font-size: 25px;
+}
+
+.safety-note strong {
+  font-size: 15px;
+}
+
+.safety-note p {
+  margin: 7px 0 0;
+
+  color: #6d6650;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* ASK AGRION */
+
+.ask-stage-card {
+  padding: 30px;
+
+  background: #e9f5e6;
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ask-stage-icon {
+  font-size: 45px;
+}
+
+.ask-stage-card p {
+  margin: 0;
+
+  color: #4d8b54;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.ask-stage-card h2 {
+  margin: 5px 0;
+}
+
+.ask-stage-card span {
+  color: #627267;
+}
+
+.ask-stage-card button {
+  margin-left: auto;
+
+  border: none;
+  background: #3f8f49;
+  color: white;
+
+  padding: 13px 20px;
+  border-radius: 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+/* FOOTER */
+
+.stage-detail-footer {
+  text-align: center;
+  padding: 40px;
+
+  background: #173d24;
+  color: white;
+}
+
+.stage-detail-footer strong {
+  font-size: 20px;
+}
+
+.stage-detail-footer p {
+  margin: 8px 0;
+  opacity: 0.8;
+}
+
+.stage-detail-footer small {
+  opacity: 0.6;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .stage-detail-navbar {
+    padding: 0 15px;
+  }
+
+  .stage-step {
+    display: none;
+  }
+
+  .stage-detail-hero {
+    padding-top: 45px;
+  }
+
+  .stage-detail-hero h1 {
+    font-size: 36px;
+  }
+
+  .stage-description {
+    font-size: 15px;
+  }
+
+  .goal-card {
+    align-items: flex-start;
+  }
+
+  .monitor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ask-stage-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ask-stage-card button {
+    margin-left: 0;
+  }
+
+}

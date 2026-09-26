@@ -1,0 +1,487 @@
+/* ================================
+   SMALL BOTTOM VOICE BUTTON
+================================ */
+
+.agrion-voice-assistant {
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.agrion-voice-button {
+  border: none;
+  border-radius: 999px;
+
+  padding: 8px 14px 8px 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  background: linear-gradient(
+    135deg,
+    #1f7a45,
+    #2f9e5b
+  );
+
+  color: white;
+
+  box-shadow:
+    0 7px 20px rgba(31, 122, 69, 0.25),
+    0 2px 7px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.agrion-voice-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(31, 122, 69, 0.3),
+    0 3px 9px rgba(0, 0, 0, 0.13);
+}
+
+.agrion-voice-button:active {
+  transform: scale(0.96);
+}
+
+.agrion-voice-icon {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  font-size: 17px;
+}
+
+.agrion-voice-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+
+  white-space: nowrap;
+}
+
+.agrion-voice-content strong {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.agrion-voice-content span {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  opacity: 0.85;
+}
+
+.agrion-voice-pulse {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.agrion-voice-pulse span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: white;
+
+  animation: agrionVoicePulse 1.7s ease-in-out infinite;
+}
+
+@keyframes agrionVoicePulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+
+/* ================================
+   VOICE OVERLAY
+================================ */
+
+.agrion-voice-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(10, 30, 18, 0.45);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ================================
+   VOICE PANEL
+================================ */
+
+.agrion-voice-panel {
+  position: relative;
+
+  width: min(430px, 100%);
+
+  min-height: 560px;
+
+  padding: 34px 28px 28px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  border-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(93, 190, 116, 0.16),
+      transparent 38%
+    ),
+    white;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.22);
+
+  animation: agrionVoicePanelIn 0.25s ease-out;
+}
+
+@keyframes agrionVoicePanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ================================
+   CLOSE BUTTON
+================================ */
+
+.agrion-voice-close {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f5f2;
+
+  color: #31533d;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.agrion-voice-close:hover {
+  background: #e5eee7;
+  transform: rotate(5deg);
+}
+
+
+/* ================================
+   PANEL HEADER
+================================ */
+
+.agrion-voice-panel-logo {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
+
+  background: #eaf6ed;
+
+  font-size: 25px;
+
+  margin-bottom: 12px;
+}
+
+.agrion-voice-panel-title span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: #2f9e5b;
+}
+
+.agrion-voice-panel-title h2 {
+  margin: 4px 0 0;
+
+  font-size: 24px;
+  font-weight: 750;
+
+  color: #173c27;
+}
+
+
+/* ================================
+   VOICE ORB
+================================ */
+
+.agrion-voice-orb {
+  width: 175px;
+  height: 175px;
+
+  margin-top: 32px;
+  margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(72, 169, 94, 0.25),
+      rgba(72, 169, 94, 0.08) 55%,
+      transparent 70%
+    );
+
+  animation: agrionOrbGlow 2.5s ease-in-out infinite;
+}
+
+.agrion-voice-orb > div {
+  width: 110px;
+  height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    145deg,
+    #2f9e5b,
+    #176b3c
+  );
+
+  box-shadow:
+    0 15px 35px rgba(31, 122, 69, 0.28);
+
+  font-size: 45px;
+}
+
+@keyframes agrionOrbGlow {
+  0%,
+  100% {
+    transform: scale(0.96);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+
+/* ================================
+   PANEL TEXT
+================================ */
+
+.agrion-voice-panel h3 {
+  margin: 0;
+
+  font-size: 21px;
+  font-weight: 750;
+
+  color: #173c27;
+}
+
+.agrion-voice-panel p {
+  max-width: 330px;
+
+  margin: 10px 0 25px;
+
+  font-size: 13px;
+  line-height: 20px;
+
+  color: #68786e;
+}
+
+
+/* ================================
+   BIG MICROPHONE
+================================ */
+
+.agrion-big-mic {
+  width: 72px;
+  height: 72px;
+
+  border: none;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #1f7a45,
+    #2f9e5b
+  );
+
+  color: white;
+
+  font-size: 29px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 30px rgba(31, 122, 69, 0.28);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.agrion-big-mic:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 16px 35px rgba(31, 122, 69, 0.34);
+}
+
+.agrion-big-mic:active {
+  transform: scale(0.94);
+}
+
+.agrion-mic-label {
+  margin-top: 10px;
+
+  font-size: 11px;
+
+  color: #809087;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 480px) {
+
+  .agrion-voice-assistant {
+    bottom: calc(
+      10px + env(safe-area-inset-bottom)
+    );
+  }
+
+  .agrion-voice-button {
+    padding: 7px 12px 7px 8px;
+    gap: 8px;
+  }
+
+  .agrion-voice-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+
+    font-size: 16px;
+  }
+
+  .agrion-voice-content strong {
+    font-size: 12px;
+  }
+
+  .agrion-voice-content span {
+    font-size: 9px;
+  }
+
+  .agrion-voice-pulse {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
+
+  .agrion-voice-panel {
+    min-height: 530px;
+
+    padding:
+      30px
+      20px
+      25px;
+
+    border-radius: 26px;
+  }
+
+  .agrion-voice-orb {
+    width: 145px;
+    height: 145px;
+
+    margin-top: 25px;
+  }
+
+  .agrion-voice-orb > div {
+    width: 92px;
+    height: 92px;
+
+    font-size: 38px;
+  }
+}
